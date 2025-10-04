@@ -3,7 +3,6 @@ package org.example;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.NoSuchElementException;
-
 public class MinHeap<T extends Comparable<T>> {
     private T[] heap;
     private int size;
