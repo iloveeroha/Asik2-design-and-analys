@@ -1,11 +1,12 @@
 package org.example;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class BenchmarkRunner {
+public class Main {
     private static int[] generateRandomIntArray(int n, int bound) {
         Random rnd = new Random(42);
         return IntStream.range(0, n).map(i -> rnd.nextInt(bound)).toArray();
@@ -31,7 +32,7 @@ public class BenchmarkRunner {
         System.out.println("n=" + n + " elapsed(us)=" + elapsedUs + " metrics=" + heap.getMetrics().csvRow());
         if (outCsv != null) {
             try (FileWriter fw = new FileWriter(outCsv, true)) {
-                fw.write(n + "," + elapsedUs + "," + heap.getMetrics().csvRow() + "\\n");
+                fw.write(n + "," + elapsedUs + "," + heap.getMetrics().csvRow() + "\n");
             } catch (IOException e) {
                 System.err.println("failed to write csv: " + e.getMessage());
             }
@@ -42,7 +43,7 @@ public class BenchmarkRunner {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter sizes separated by spaces (e.g. 100 1000 10000):");
         String line = sc.nextLine();
-        String[] parts = line.trim().split("\\\\s+");
+        String[] parts = line.trim().split("\\s+");
         System.out.println("Enter output CSV file path or leave empty:");
         String csv = sc.nextLine().trim();
         if (csv.isEmpty()) csv = null;
